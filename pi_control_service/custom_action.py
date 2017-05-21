@@ -1,6 +1,6 @@
 from pika_pack import RPCBlockingConsumer
 
-from mixins import ServiceUtils
+from .mixins import ServiceUtils
 
 
 def not_hidden_method(method_name):
@@ -11,7 +11,7 @@ class CustomActionControlService(ServiceUtils, RPCBlockingConsumer):
 
     def __init__(self, rabbit_url, device_key, actions):
         self._actions = actions
-        self._allowed_actions = filter(not_hidden_method, dir(self._actions))
+        self._allowed_actions = list(filter(not_hidden_method, dir(self._actions)))
         super(CustomActionControlService, self).__init__(
             rabbit_url=rabbit_url,
             exchange='custom_action_control',

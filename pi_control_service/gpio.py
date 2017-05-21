@@ -1,7 +1,7 @@
 from pika_pack import RPCBlockingConsumer
 from pi_pin_manager import PinManager
 
-from mixins import ServiceUtils
+from .mixins import ServiceUtils
 
 
 ALLOWED_ACTIONS = ('on', 'off', 'read', 'get_config')
